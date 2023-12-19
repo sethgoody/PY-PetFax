@@ -8,8 +8,10 @@
 <body>
     <h1>Submit a Fun Fact</h1>
     <form action="{{ url_for('pet.create_fact') }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
         <label for="fact">Fun Fact:</label>
-        <input type="text" id="fact" name="fact">
+        <input type="text" id="fact" name="fact"><br><br>
         <input type="submit" value="Submit">
     </form>
     <a href="{{ url_for('pet.index') }}">Back to all pets</a>

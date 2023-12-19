@@ -8,7 +8,6 @@
 <body>
     <h1>Welcome to PetFax!</h1>
 
-    <!-- Link to Create Fact Page -->
     <a href="/pets/create_fact" style="display:block; margin-bottom: 20px;">
         <button>Submit a Fun Fact</button>
     </a>
@@ -17,7 +16,6 @@
     <ul>
         {% for pet in pets %}
             <li>
-                <!-- Link to Individual Pet Show Page -->
                 <a href="/pets/{{ pet.pet_id }}">
                     <img src="{{ pet.pet_photo }}" alt="{{ pet.pet_name }}" style="height: 100px;">
                     {{ pet.pet_name }}

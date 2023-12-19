@@ -1,10 +1,8 @@
-from flask import Blueprint, render_template
-
-import json 
+from flask import Blueprint, request, render_template, redirect, url_for
+import json
 
 pets = json.load(open('pets.json'))
 print(pets)
-
 
 bp = Blueprint('pet', __name__, url_prefix="/pets")
 
@@ -12,30 +10,29 @@ bp = Blueprint('pet', __name__, url_prefix="/pets")
 def index(): 
     return render_template('index.html', pets=pets)
 
-@bp.route('/kiko')
-def show_kiko():
-    kiko = get_pet_data('Kiko')
-    return render_template('show_kiko.html', pet=kiko)
+@bp.route('/<int:pet_id>')
+def show_pet(pet_id):
+    pet = get_pet_data(pet_id)
+    if pet:
+        return render_template('show_pet.html', pet=pet)
+    else:
+        return "Pet not found", 404
 
-@bp.route('/thumper')
-def show_thumper():
-    thumper = get_pet_data('Thumper')
-    return render_template('show_thumper.html', pet=thumper)
+def get_pet_data(pet_id):
+    for pet in pets:
+        if pet['pet_id'] == pet_id:
+            return pet
+    return None
 
-@bp.route('/max')
-def show_max():
-    max = get_pet_data('Max')
-    return render_template('show_max.html', pet=max)
 
 @bp.route('/create_fact', methods=['GET', 'POST'])
 def create_fact():
     if request.method == 'POST':
-        pass
+        name = request.form.get('name')
+        fact = request.form.get('fact')
+
+        print(f"Name: {name}, Fact: {fact}")
+
+        return redirect(url_for('pet.index'))
+
     return render_template('create_fact.html')
-
-
-
-
-
-
-
