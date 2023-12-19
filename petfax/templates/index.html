@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption</title>
+</head>
+<body>
+    <h1>Welcome to PetFax!</h1>
+
+    <!-- Link to Create Fact Page -->
+    <a href="/pets/create_fact" style="display:block; margin-bottom: 20px;">
+        <button>Submit a Fun Fact</button>
+    </a>
+
+    <h2>Available Pets for Adoption</h2>
+    <ul>
+        {% for pet in pets %}
+            <li>
+                <!-- Link to Individual Pet Show Page -->
+                <a href="/pets/{{ pet.pet_id }}">
+                    <img src="{{ pet.pet_photo }}" alt="{{ pet.pet_name }}" style="height: 100px;">
+                    {{ pet.pet_name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

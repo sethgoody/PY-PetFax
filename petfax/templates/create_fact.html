@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Fun Fact</title>
+</head>
+<body>
+    <h1>Submit a Fun Fact</h1>
+    <form action="{{ url_for('pet.create_fact') }}" method="post">
+        <label for="fact">Fun Fact:</label>
+        <input type="text" id="fact" name="fact">
+        <input type="submit" value="Submit">
+    </form>
+    <a href="{{ url_for('pet.index') }}">Back to all pets</a>
+</body>
+</html>
